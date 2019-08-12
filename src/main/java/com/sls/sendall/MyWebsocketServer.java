@@ -4,10 +4,7 @@ import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
+import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -36,6 +33,7 @@ public class MyWebsocketServer {
      * 客户端关闭
      * @param session
      */
+    @OnClose
     public void onClose(Session session) {
         log.info("有用户断开了，id为：{}", session.getId());
         // 将掉线的用户移除在线的组里
